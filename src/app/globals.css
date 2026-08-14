@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+:root {
+  /* ===== Core Background ===== */
+  --color-page-bg: #ffffff;
+  --background: var(--color-page-bg);
+  --foreground: #111827;
+
+  /* ===== Text Tones (matched to live site) ===== */
+  --color-text-muted: #686868;    /* body copy, descriptions — was #6B6B6B */
+  --color-text-subtle: #686868;   /* eyebrow labels — was #8A8A8A */
+  --color-text-border: #D9D4CC;   /* dividers on light sections — was #DDD7CF */
+  --color-text-dark: #1A1A1A;     /* card headings */
+  --color-text-charcoal: #282828; /* strong body text */
+  --color-footer-copy: #BABABA;   /* footer copyright line */
+
+  /* ===== Gold Variants (kept separate, centralized — corrected to site values) ===== */
+  --primary-gold: #C9A84C;         /* was #EAB308 — actual button gold */
+  --luxury-gold: #D9A25D;          /* --SandalWood, hero/bespoke CTA bg */
+  --luxury-gold-hover: #dfb75a;    /* amber-200 Tailwind default hover */
+  --category-gold: #C9A84C;        /* was #C8A64D — category card buttons */
+  --category-gold-hover: #b8962e;  /* was #B7953F — confirmed hover */
+  --soft-gold: #F0CB6E;            /* was #f0c86b — custom section bg + link hover */
+  --soft-gold-hover: #dfb75a;
+
+  --luxury-dark: #1A1A1A;   /* was #0d0d0d */
+  --section-bg: #EFEFEF;    /* was #f3f4f6 */
+
+  /* references the next/font variable set in layout.js — do NOT hardcode a font name here */
+  --font-geist-sans: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
+
+  /* ===== Typography Scale (fixed Tailwind steps) ===== */
+  --text-h1: theme(fontSize.4xl);       /* mobile */
+  --text-h2: theme(fontSize.4xl);
+  --text-h3: theme(fontSize.2xl);
+}
+
+@theme {
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-text-muted: var(--color-text-muted);
+  --color-text-subtle: var(--color-text-subtle);
+  --color-text-border: var(--color-text-border);
+  --color-text-dark: var(--color-text-dark);
+  --color-text-charcoal: var(--color-text-charcoal);
+  --color-footer-copy: var(--color-footer-copy);
+
+  --color-gold: var(--primary-gold);
+  --color-luxury-gold: var(--luxury-gold);
+  --color-category-gold: var(--category-gold);
+  --color-soft-gold: var(--soft-gold);
+  --color-luxury-dark: var(--luxury-dark);
+  --color-page-bg: var(--color-page-bg);
+  --color-section-bg: var(--section-bg);
+
+  --font-sans: var(--font-geist-sans);
+
+}
+
+@layer base {
+  html, body {
+    background: var(--color-page-bg);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+
+  /* ============ HEADINGS ============ */
+  .heading-hero {
+    @apply text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.15] tracking-tight;
+    color: var(--foreground);
+  }
+
+  .heading-section {
+    @apply text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight;
+    color: var(--foreground);
+  }
+
+  .heading-card {
+    @apply text-xl lg:text-2xl font-semibold tracking-tight leading-snug;
+    color: var(--color-text-dark);
+  }
+
+  .label-eyebrow {
+    @apply text-xs md:text-sm font-medium uppercase tracking-widest;
+    color: var(--color-text-subtle);
+  }
+
+  /* ============ BODY TEXT ============ */
+  .text-body {
+    @apply text-base leading-relaxed;
+    color: var(--color-text-muted);
+  }
+  .text-body-sm {
+    @apply text-sm leading-relaxed;
+    color: var(--color-text-muted);
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn-primary {
+    @apply bg-black text-yellow-500 font-bold py-4 px-8 rounded-2xl hover:bg-gray-900 transition-all active:scale-[0.98];
+  }
+
+  /* Hero CTA — SandalWood gold (matches --SandalWood on live site) */
+  .btn-luxury-gold {
+    @apply text-black font-semibold py-3 px-5 rounded-xl transition-all duration-300 hover:scale-105;
+    background: var(--luxury-gold);
+  }
+  .btn-luxury-gold:hover {
+    background: var(--luxury-gold-hover);
+  }
+
+  /* ShopByCategories CTA — deeper antique gold */
+  .btn-category-gold {
+    @apply text-white font-semibold uppercase tracking-wide text-xs rounded px-4 py-2.5 transition-all duration-200;
+    background: var(--category-gold);
+  }
+  .btn-category-gold:hover {
+    background: var(--category-gold-hover);
+  }
+
+  /* Bespoke/WhoWeAre CTA — soft light gold */
+  .btn-soft-gold {
+    @apply text-black font-semibold rounded-xl px-5 py-3 transition-all duration-200 hover:scale-105;
+    background: var(--soft-gold);
+  }
+  .btn-soft-gold:hover {
+    background: var(--soft-gold-hover);
+  }
+
+  /* ============ CONTAINERS ============ */
+  .section-padding {
+    @apply py-20 px-6 max-w-7xl mx-auto;
+    background: var(--color-page-bg);
+  }
+  .feature-box {
+    @apply border border-gray-200 rounded-3xl p-10;
+    background: var(--section-bg);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-nopause {
+  animation: marquee 30s linear infinite;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+@keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+@keyframes hero-marquee-scroll {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-25%);
+          }
+        }
+        .animate-hero-marquee {
+          animation: hero-marquee-scroll 22s linear infinite;
+        }
+    
+        .rich-text-content p {
+          margin-bottom: 1.75rem;
+          color: #292524;
+        }
+        .rich-text-content p:first-of-type::first-letter {
+          font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+          font-size: 3.75rem;
+          line-height: 0.8;
+          font-weight: 700;
+          float: left;
+          margin-right: 0.75rem;
+          color: #b8894a;
+        }
+        .rich-text-content h2 {
+          font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+          font-size: 1.875rem;
+          font-weight: 700;
+          color: #0c0a09;
+          margin-top: 2.5rem;
+          margin-bottom: 1.25rem;
+          line-height: 1.25;
+        }
+        .rich-text-content h3 {
+          font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #0c0a09;
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+        }
+        .rich-text-content blockquote {
+          border-left: 3px solid #c8a64d;
+          padding-left: 1.5rem;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          font-style: italic;
+          font-family: ui-serif, Georgia, serif;
+          font-size: 1.25rem;
+          color: #44403c;
+        }
+        .rich-text-content img {
+          width: 100%;
+          border-radius: 1rem;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        .rich-text-content ul {
+          list-style-type: disc;
+          padding-left: 1.5rem;
+          margin-bottom: 1.75rem;
+        }
+        .rich-text-content ol {
+          list-style-type: decimal;
+          padding-left: 1.5rem;
+          margin-bottom: 1.75rem;
+        }
+        .rich-text-content li {
+          margin-bottom: 0.5rem;
+        }
+        .rich-text-content a {
+          color: #b8894a;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+      
